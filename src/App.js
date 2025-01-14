@@ -1,11 +1,18 @@
 import "./App.css";
+import Login from "./Components/Login";
 import Register from "./Components/Register";
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
   return (
-    <div className="text-emerald-20">
-      <Register />
-    </div>
+    // <div >
+    //   <Register />
+    // </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
