@@ -21,7 +21,7 @@ export default function Login() {
       })
       .then((d) => {
         console.log(d);
-        if (!d.ok) {
+        if (!d.ok && !d.token) {
           setErrorMessage(d.msg);
         } else {
           localStorage.setItem("token", d.token);
