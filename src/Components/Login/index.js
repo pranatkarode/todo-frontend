@@ -2,12 +2,16 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { loginUser } from "../../Utils/endpoints";
 import { useNavigate } from "react-router-dom";
+import Loader from "../Loader";
 
 export default function Login() {
   const [errorMessage, setErrorMessage] = useState(null);
   const { handleSubmit, register } = useForm();
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+
   const onSubmit = (data) => {
+    setIsLoading(true);
     fetch(loginUser, {
       method: "POST",
       body: JSON.stringify(data),
@@ -27,9 +31,10 @@ export default function Login() {
           localStorage.setItem("token", d.token);
           navigate("/home");
         }
+        setIsLoading(false);
       })
-
       .catch((err) => {
+        setIsLoading(false);
         console.log(err);
       });
   };
@@ -72,10 +77,11 @@ export default function Login() {
             <p className="text-xs text-red-600">{errorMessage}</p>
           )}
           <button
-            className="text-white bg-slate-800 py-2 rounded-md"
+            className="text-white bg-slate-800 py-2 rounded-md h-[40px]"
             type="submit"
+            disabled={isLoading}
           >
-            Login
+            {isLoading ? <Loader /> : "Login"}
           </button>
           <div>
             <a
