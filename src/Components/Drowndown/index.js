@@ -22,7 +22,6 @@ export default function Dropdown({ setShowDropdown }) {
         <li onClick={logout} className="cursor-pointer">
           Logout
         </li>
-        <li>Settings</li>
       </ul>
     </div>
   );

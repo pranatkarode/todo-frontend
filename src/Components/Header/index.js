@@ -5,7 +5,7 @@ export default function Header() {
   const [showDropdown, setShowDropdown] = useState(false);
   console.log("Drop", showDropdown);
   return (
-    <div className="flex justify-between px-24 py-4 items-center bg-slate-800 text-white">
+    <div className="flex justify-between px-4 md:px-16 lg:px-24 py-4 items-center bg-slate-800 text-white">
       <div className="">Note Keep</div>
       <div className="flex gap-4 items-center">
         <div>Hello User!</div>

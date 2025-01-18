@@ -2,7 +2,7 @@ import Layout from "../Layout";
 import { useForm } from "react-hook-form";
 import TagInput from "../TagInput";
 import { useEffect, useState } from "react";
-import { notes } from "../../Utils/endpoints";
+import { notesUrl } from "../../Utils/endpoints";
 import { useNavigate } from "react-router-dom";
 export default function CreateNote() {
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ export default function CreateNote() {
   } = useForm();
   const onSubmit = (data) => {
     console.log("data ", data);
-    fetch(notes, {
+    fetch(notesUrl, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -31,6 +31,12 @@ export default function CreateNote() {
       });
   };
   const [tags, setTags] = useState([]);
+  const [minDate, setMinDate] = useState("");
+  console.log("min", minDate);
+  useEffect(() => {
+    const now = new Date();
+    setMinDate(now.toISOString().slice(0, 16));
+  }, []);
   useEffect(() => {
     setValue("tags", tags);
   }, [tags]);
@@ -73,7 +79,7 @@ export default function CreateNote() {
           <input
             type="datetime-local"
             {...register("dueDate")}
-            min="2025-01-02T08:30"
+            min={minDate}
             className="px-2 py-1 border border-slate-500 rounded-md shadow-md placeholder:text-sm"
           />
         </div>

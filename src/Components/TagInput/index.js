@@ -2,14 +2,15 @@ import { useState } from "react";
 
 export default function TagInput({ tags, setTags }) {
   const removeTag = (index) => {
-    console.log("triggered");
+    // console.log("triggered");
     setTags((prev) => {
       return prev.filter((_, i) => i !== index);
     });
   };
 
   const addTag = (e) => {
-    if (e.key == "Enter") {
+    if (e.key === "Enter") {
+      e.preventDefault();
       const newTag = e.target.value;
       if (e.target.value.trim() !== "")
         if (!tags.includes(newTag)) {
