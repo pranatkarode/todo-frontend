@@ -23,7 +23,7 @@ export default function TagInput({ tags, setTags }) {
   return (
     <div>
       <div className="flex flex-wrap items-center gap-2 border border-slate-500 rounded-lg p-2">
-        {tags.map((tag, index) => (
+        {tags?.map((tag, index) => (
           <div
             key={index}
             className="flex items-center gap-2 bg-slate-500 text-white text-sm px-3 py-1 rounded-full"

@@ -85,7 +85,7 @@ export default function Login() {
           </button>
           <div>
             <a
-              href="/home"
+              href="/register"
               className="text-xs text-indigo-900 hover:text-indigo-700"
             >
               New User? Register Now!

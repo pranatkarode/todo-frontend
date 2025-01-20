@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { notesUrl } from "../../Utils/endpoints";
+import { useNavigate } from "react-router-dom";
 
 export default function CardComponent({ note, setSomethingDeleted }) {
   const [isCompleted, setIsCompleted] = useState(note.completed);
+  const navigate = useNavigate();
   const handleChange = () => {
     setIsCompleted((prev) => !prev);
     fetch(`${notesUrl}/${note._id}`, {
@@ -63,7 +65,7 @@ export default function CardComponent({ note, setSomethingDeleted }) {
         </div>
         <div className="text-sm ">Due on: {note.dueDate.slice(0, 10)}</div>
         <div className="flex gap-2 justify-between mt-4">
-          <button>
+          <button onClick={() => navigate(`/update/${note._id}`)}>
             <img src="images/edit.svg" width={20} height={20} />
           </button>
           <button onClick={OnDelete}>
